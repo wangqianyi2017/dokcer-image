@@ -1,5 +1,5 @@
 #基础镜像 caffe-gpu
-FROM harbor.58corp.com/ailab/bvlc/caffe:gpu-ssh-ajk
+FROM bvlc/caffe:gpu
 
 #镜像制作及发布者信息
 MAINTAINER wangqianyi <wangqianyi@58.com>
