@@ -1,0 +1,19 @@
+FROM bvlc/caffe:gpu
+
+MAINTAINER wangqianyi <wangqianyi@58.com>
+
+RUN apt-get update && apt-get install -y locales iputils-ping curl && \
+    apt-get install -y lrzsz vim
+
+RUN  DEBIAN_FRONTEND=noninteractive  apt-get install -y  openssh-server openssh-client
+
+## 设置root密码
+RUN echo root:123 | chpasswd
+
+RUN echo "export PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" >> /root/.bashrc
+RUN echo "export LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64" >> /root/.bashrc
+## ssh port 22
+EXPOSE 22
+
+## ssh start cmd
+CMD service ssh restart -D
